@@ -1,7 +1,7 @@
 'use strict';
 
-var Account = function() {
-  this.balance = 0;
+var Account = function(balance = 0) {
+  this.balance = balance;
   this.transactions = [];
   this.date = new Date();
 };

@@ -8,7 +8,7 @@
       account = new Account();
     });
 
-    it('initialise with a balance of 0', function() {
+    it('has a default balance of 0', function() {
       expect(account.balance).toEqual(0);
     });
 
