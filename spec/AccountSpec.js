@@ -17,4 +17,11 @@
       expect(account.statement).toEqual([]);
     });
 
+    describe('Make deposit', function () {
+      it('updates the balance after a deposit has been made', function() {
+        account.makeDeposit(500);
+        expect(account.balance).toEqual(500);
+      });
+    });
+
   });
