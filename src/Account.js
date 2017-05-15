@@ -8,7 +8,7 @@ var Account = function() {
 Account.prototype.makeDeposit = function (amount) {
   this.balance += amount;
   this.statement.push({
-    credit: null,
+    credit: "-",
     debit: amount,
     balance: this.balance
   });
@@ -26,7 +26,7 @@ Account.prototype.withdraw = function (amount) {
     this.balance -= amount;
     this.statement.push({
       credit: amount,
-      debit: null,
+      debit: "-",
       balance: this.balance
     });
   };
@@ -60,5 +60,5 @@ Account.prototype.displayBalance = function () {
 };
 
 Account.prototype.displayStatement = function () {
-  return this.displayDebit() + " | " + this.displayBalance();
+  return this.displayCredit() + " | " + this.displayDebit() + " | " + this.displayBalance();
 };

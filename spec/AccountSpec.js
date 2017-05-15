@@ -27,7 +27,7 @@
         account.balance = 1000;
         account.makeDeposit(500);
         expect(account.statement).toEqual([{
-          credit: null,
+          credit: "-",
           debit: 500,
           balance: 1500
         }]);
@@ -59,7 +59,7 @@
         account.withdraw(500);
         expect(account.statement).toEqual([{
           credit: 500,
-          debit: null,
+          debit: "-",
           balance: 200
         }]);
       });
@@ -77,7 +77,8 @@
       it('displays the statement', function() {
         account.makeDeposit(500);
         account.makeDeposit(700);
-        expect(account.displayStatement()).toEqual("Debit: 500 700 | Balance: 500 1200");
+        account.withdraw(200);
+        expect(account.displayStatement()).toEqual("Credit: - - 200 | Debit: 500 700 - | Balance: 500 1200 1000");
       });
     });
 
