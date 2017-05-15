@@ -27,6 +27,7 @@
         account.balance = 1000;
         account.makeDeposit(500);
         expect(account.statement).toEqual([{
+          credit: null,
           debit: 500,
           balance: 1500
         }]);
@@ -47,12 +48,29 @@
         expect(account.balance).toEqual(700);
       });
 
-    it('only lets you withdraw if the amount is equal or bigger than the balance', function () {
-      account.balance = 700;
-      expect(account.withdraw(800)).toEqual('Not enough funds');
-      expect(account.balance).toEqual(700);
+      it('only lets you withdraw if the amount is equal or bigger than the balance', function () {
+        account.balance = 700;
+        expect(account.withdraw(800)).toEqual('Not enough funds');
+        expect(account.balance).toEqual(700);
+      });
+
+      it('adds row to statement if withdrawal was successful', function() {
+        account.balance = 700;
+        account.withdraw(500);
+        expect(account.statement).toEqual([{
+          credit: 500,
+          debit: null,
+          balance: 200
+        }]);
+      });
+
+      it('displays all withdrawals', function() {
+        account.balance = 1000;
+        account.withdraw(200);
+        account.withdraw(400);
+        expect(account.displayCredit()).toEqual("Credit: 200 400");
+      });
     });
-  });
 
     describe('Statement', function() {
 

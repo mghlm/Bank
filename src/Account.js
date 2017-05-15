@@ -8,6 +8,7 @@ var Account = function() {
 Account.prototype.makeDeposit = function (amount) {
   this.balance += amount;
   this.statement.push({
+    credit: null,
     debit: amount,
     balance: this.balance
   });
@@ -19,26 +20,39 @@ function Error(message) {
 }
 
 Account.prototype.withdraw = function (amount) {
-
   if (this.balance - amount <= 0) {
     return 'Not enough funds';
   } else {
     this.balance -= amount;
+    this.statement.push({
+      credit: amount,
+      debit: null,
+      balance: this.balance
+    });
   };
 };
 
 Account.prototype.displayDebit = function () {
-  var debit = []
-  debit.push("Debit:")
+  var debit = [];
+  debit.push("Debit:");
   for (var i = 0; i < this.statement.length; i++) {
     debit.push(this.statement[i].debit);
   }
   return debit.join(",").replace(/,/g,' ');
 };
 
+Account.prototype.displayCredit = function () {
+  var credit = [];
+  credit.push("Credit:");
+  for (var i = 0; i < this.statement.length; i++) {
+    credit.push(this.statement[i].credit);
+  }
+  return credit.join(",").replace(/,/g,' ');
+};
+
 Account.prototype.displayBalance = function () {
-  var balance = []
-  balance.push("Balance:")
+  var balance = [];
+  balance.push("Balance:");
   for (var i = 0; i < this.statement.length; i++) {
     balance.push(this.statement[i].balance);
   }
