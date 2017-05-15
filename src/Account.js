@@ -33,14 +33,7 @@ Account.prototype.displayBalance = function () {
 
 Account.prototype.displayStatement = function () {
   var statement = [];
-  statement.push("Debit:");
-  for (var i = 0; i < this.statement.length; i++) {
-    statement.push(this.statement[i].debit);
-  }
-  statement.push("| Balance:");
-  for (var i = 0; i < this.statement.length; i++) {
-    statement.push(this.statement[i].balance);
-  }
+  statement.push(this.displayDebit(), this.displayBalance());
 
-  return statement.join(",").replace(/,/g,' ');
+  return statement.join(",").replace(/,/g,' | ');
 };
