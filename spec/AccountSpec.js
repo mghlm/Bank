@@ -6,7 +6,6 @@
 
     beforeEach(function() {
       account = new Account();
-
     });
 
     it('initialise with a balance of 0', function() {
@@ -18,6 +17,7 @@
     });
 
     describe('Make deposit', function () {
+
       it('updates the balance after a deposit has been made', function() {
         account.makeDeposit(500);
         expect(account.balance).toEqual(500);
@@ -27,11 +27,15 @@
         account.balance = 1000;
         account.makeDeposit(500);
         expect(account.statement).toEqual([{
-          date: "date",
-          credit: null,
           debit: 500,
           balance: 1500
         }]);
+      });
+
+      it('displays the statement', function() {
+        account.makeDeposit(500);
+        account.makeDeposit(700);
+        expect(account.displayStatement()).toEqual("Debit: 500 700 | Balance: 500 1200");
       });
     });
 
