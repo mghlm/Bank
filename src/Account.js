@@ -13,6 +13,10 @@ Account.prototype.makeDeposit = function (amount) {
   });
 };
 
+Account.prototype.withdraw = function (amount) {
+  this.balance -= amount;
+};
+
 Account.prototype.displayDebit = function () {
   var debit = []
   debit.push("Debit:")
@@ -32,8 +36,5 @@ Account.prototype.displayBalance = function () {
 };
 
 Account.prototype.displayStatement = function () {
-  var statement = [];
-  statement.push(this.displayDebit(), this.displayBalance());
-
-  return statement.join(",").replace(/,/g,' | ');
+  return this.displayDebit() + " | " + this.displayBalance();
 };

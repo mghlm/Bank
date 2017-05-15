@@ -37,12 +37,18 @@
         account.makeDeposit(1000);
         expect(account.displayDebit()).toEqual("Debit: 500 1000");
       });
+    });
 
-      it('displays all balance-statements', function () {
-        account.makeDeposit(300);
-        account.makeDeposit(400);
-        expect(account.displayBalance()).toEqual("Balance: 300 700")
+    describe('Withdraw', function() {
+
+      it('updates balance after withdrawal', function() {
+        account.balance = 1000;
+        account.withdraw(300);
+        expect(account.balance).toEqual(700);
       });
+    });
+
+    describe('Statement', function() {
 
       it('displays the statement', function() {
         account.makeDeposit(500);
@@ -50,5 +56,14 @@
         expect(account.displayStatement()).toEqual("Debit: 500 700 | Balance: 500 1200");
       });
     });
+
+    describe('Balance', function() {
+      it('displays all balance-statements', function () {
+        account.makeDeposit(300);
+        account.makeDeposit(400);
+        expect(account.displayBalance()).toEqual("Balance: 300 700")
+      });
+    });
+
 
   });
