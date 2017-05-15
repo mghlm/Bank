@@ -13,8 +13,18 @@ Account.prototype.makeDeposit = function (amount) {
   });
 };
 
+function Error(message) {
+  this.name = 'Error';
+  this.message = message;
+}
+
 Account.prototype.withdraw = function (amount) {
-  this.balance -= amount;
+
+  if (this.balance - amount <= 0) {
+    return 'Not enough funds';
+  } else {
+    this.balance -= amount;
+  };
 };
 
 Account.prototype.displayDebit = function () {

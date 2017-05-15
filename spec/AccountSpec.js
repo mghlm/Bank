@@ -46,7 +46,13 @@
         account.withdraw(300);
         expect(account.balance).toEqual(700);
       });
+
+    it('only lets you withdraw if the amount is equal or bigger than the balance', function () {
+      account.balance = 700;
+      expect(account.withdraw(800)).toEqual('Not enough funds');
+      expect(account.balance).toEqual(700);
     });
+  });
 
     describe('Statement', function() {
 
