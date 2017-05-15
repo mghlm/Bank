@@ -33,12 +33,6 @@
           balance: 1500
         }]);
       });
-
-      it('displays all deposits', function () {
-        account.makeDeposit(500);
-        account.makeDeposit(1000);
-        expect(account.displayDebit()).toEqual("Debit: 500 1000");
-      });
     });
 
     describe('Withdraw', function() {
@@ -65,40 +59,19 @@
           balance: 200
         }]);
       });
-
-      it('displays all withdrawals', function() {
-        account.balance = 1000;
-        account.withdraw(200);
-        account.withdraw(400);
-        expect(account.displayCredit()).toEqual("Credit: 200 400");
-      });
     });
 
     describe('Statement', function() {
 
       it('displays the statement', function() {
+        var date = new Date();
         account.makeDeposit(500);
         account.makeDeposit(700);
         account.withdraw(200);
-        expect(account.displayStatement()).toEqual("Credit: - - 200 | Debit: 500 700 - | Balance: 500 1200 1000");
+        expect(account.displayStatement()).toEqual(date.toDateString() + " | - 500 | 500 | \n" + date.toDateString() + " - 700 1200 | \n" + date.toDateString() + " 200 - 1000 | ");
       });
     });
 
-    describe('Balance', function() {
-      it('displays all balance-statements', function () {
-        account.makeDeposit(300);
-        account.makeDeposit(400);
-        expect(account.displayBalance()).toEqual("Balance: 300 700")
-      });
-    });
-
-    describe('Date', function() {
-
-      it('shows the date of activity', function() {
-        account.makeDeposit(500);
-        expect(account.displayDate()).toEqual("Date: Mon May 15 2017");
-      });
-    });
 
 
   });
