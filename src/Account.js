@@ -13,6 +13,15 @@ Account.prototype.makeDeposit = function (amount) {
   });
 };
 
+Account.prototype.displayDebit = function () {
+  var debit = []
+  debit.push("Debit:")
+  for (var i = 0; i < this.statement.length; i++) {
+    debit.push(this.statement[i].debit);
+  }
+  return debit.join(",").replace(/,/g,' ');
+};
+
 Account.prototype.displayStatement = function () {
   var statement = [];
   statement.push("Debit:");

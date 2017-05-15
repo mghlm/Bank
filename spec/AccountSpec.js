@@ -32,6 +32,12 @@
         }]);
       });
 
+      it('displays all deposits', function () {
+        account.makeDeposit(500);
+        account.makeDeposit(1000);
+        expect(account.displayDebit()).toEqual("Debit: 500 1000");
+      });
+
       it('displays the statement', function() {
         account.makeDeposit(500);
         account.makeDeposit(700);
