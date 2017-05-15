@@ -22,6 +22,15 @@ Account.prototype.displayDebit = function () {
   return debit.join(",").replace(/,/g,' ');
 };
 
+Account.prototype.displayBalance = function () {
+  var balance = []
+  balance.push("Balance:")
+  for (var i = 0; i < this.statement.length; i++) {
+    balance.push(this.statement[i].balance);
+  }
+  return balance.join(",").replace(/,/g,' ');
+};
+
 Account.prototype.displayStatement = function () {
   var statement = [];
   statement.push("Debit:");

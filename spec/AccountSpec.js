@@ -38,6 +38,12 @@
         expect(account.displayDebit()).toEqual("Debit: 500 1000");
       });
 
+      it('displays all balance-statements', function () {
+        account.makeDeposit(300);
+        account.makeDeposit(400);
+        expect(account.displayBalance()).toEqual("Balance: 300 700")
+      });
+
       it('displays the statement', function() {
         account.makeDeposit(500);
         account.makeDeposit(700);
