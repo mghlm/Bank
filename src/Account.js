@@ -8,16 +8,13 @@ var Account = function() {
 Account.prototype.makeDeposit = function (amount) {
   this.balance += amount;
   this.statement.push({
+    date: "date",
     credit: "-",
     debit: amount,
     balance: this.balance
   });
+  console.log(this.balance);
 };
-
-function Error(message) {
-  this.name = 'Error';
-  this.message = message;
-}
 
 Account.prototype.withdraw = function (amount) {
   if (this.balance - amount <= 0) {
@@ -25,16 +22,17 @@ Account.prototype.withdraw = function (amount) {
   } else {
     this.balance -= amount;
     this.statement.push({
+      date: "date",
       credit: amount,
       debit: "-",
       balance: this.balance
     });
   };
+  console.log(this.balance);
 };
 
 Account.prototype.displayDebit = function () {
-  var debit = [];
-  debit.push("Debit:");
+  var debit = ["Debit:"];
   for (var i = 0; i < this.statement.length; i++) {
     debit.push(this.statement[i].debit);
   }
@@ -42,8 +40,7 @@ Account.prototype.displayDebit = function () {
 };
 
 Account.prototype.displayCredit = function () {
-  var credit = [];
-  credit.push("Credit:");
+  var credit = ["Credit:"];
   for (var i = 0; i < this.statement.length; i++) {
     credit.push(this.statement[i].credit);
   }
@@ -51,12 +48,19 @@ Account.prototype.displayCredit = function () {
 };
 
 Account.prototype.displayBalance = function () {
-  var balance = [];
-  balance.push("Balance:");
+  var balance = ["Balance:"];
   for (var i = 0; i < this.statement.length; i++) {
     balance.push(this.statement[i].balance);
   }
   return balance.join(",").replace(/,/g,' ');
+};
+
+Account.prototype.displayDate = function () {
+  var dates = ["Date:"];
+  for (var i = 0; i < this.statement.length; i++) {
+    dates.push(this.statement[i].date);
+  }
+  return dates.join(",").replace(/,/g,' ');
 };
 
 Account.prototype.displayStatement = function () {

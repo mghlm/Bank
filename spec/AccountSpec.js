@@ -27,6 +27,7 @@
         account.balance = 1000;
         account.makeDeposit(500);
         expect(account.statement).toEqual([{
+          date: "date",
           credit: "-",
           debit: 500,
           balance: 1500
@@ -58,6 +59,7 @@
         account.balance = 700;
         account.withdraw(500);
         expect(account.statement).toEqual([{
+          date: "date",
           credit: 500,
           debit: "-",
           balance: 200
@@ -87,6 +89,14 @@
         account.makeDeposit(300);
         account.makeDeposit(400);
         expect(account.displayBalance()).toEqual("Balance: 300 700")
+      });
+    });
+
+    describe('Date', function() {
+
+      it('shows the date of activity', function() {
+        account.makeDeposit(500);
+        expect(account.displayDate()).toEqual("Date: date");
       });
     });
 
