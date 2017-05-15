@@ -22,6 +22,17 @@
         account.makeDeposit(500);
         expect(account.balance).toEqual(500);
       });
+
+      it('adds new object to statements', function() {
+        account.balance = 1000;
+        account.makeDeposit(500);
+        expect(account.statement).toEqual([{
+          date: "date",
+          credit: null,
+          debit: 500,
+          balance: 1500
+        }]);
+      });
     });
 
   });
