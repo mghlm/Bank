@@ -36,12 +36,12 @@ Account.prototype.withdraw = function (amount) {
 
 Account.prototype.displayStatement = function () {
   for (var i = 0; i < this.statement.length; i++) {
-    this.statements.push(this.statement[i].date);
-    this.statements.push(this.statement[i].credit);
-    this.statements.push(this.statement[i].debit);
+    this.statements.push(this.statement[i].date + " | ");
+    this.statements.push(this.statement[i].credit + " | ");
+    this.statements.push(this.statement[i].debit + " | ");
     this.statements.push(this.statement[i].balance);
     this.statements.push("\n");
   }
 
-  return this.statements.join(",").replace(/,/g , ' | ');
+  return "Date: | Credit: | Debit: | Balance: \n" + this.statements.join(",").replace(/,/g , '');
 };

@@ -68,7 +68,7 @@
         account.makeDeposit(500);
         account.makeDeposit(700);
         account.withdraw(200);
-        expect(account.displayStatement()).toEqual(date.toDateString() + " | - 500 | 500 | \n" + date.toDateString() + " - 700 1200 | \n" + date.toDateString() + " 200 - 1000 | ");
+        expect(account.displayStatement()).toEqual("Date: | Credit: | Debit: | Balance: \n" + date.toDateString() + " | - | 500 | 500\n" + date.toDateString() + " | - | 700 | 1200\n" + date.toDateString() + " | 200 | - | 1000\n");
       });
     });
 
