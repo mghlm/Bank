@@ -6,9 +6,10 @@ var Account = function() {
 };
 
 Account.prototype.makeDeposit = function (amount) {
+  var date = new Date();
   this.balance += amount;
   this.statement.push({
-    date: "date",
+    date: date.toDateString(),
     credit: "-",
     debit: amount,
     balance: this.balance
@@ -20,9 +21,10 @@ Account.prototype.withdraw = function (amount) {
   if (this.balance - amount <= 0) {
     return 'Not enough funds';
   } else {
+    var date = new Date();
     this.balance -= amount;
     this.statement.push({
-      date: "date",
+      date: date.toDateString(),
       credit: amount,
       debit: "-",
       balance: this.balance
